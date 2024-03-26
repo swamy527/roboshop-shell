@@ -19,7 +19,7 @@ VALIDATE(){
 
 echo "code start executing"
 
-if [ $id -ne 0 ]
+if [ $Id -ne 0 ]
 then
     echo -e $R Run code with root privileges $N
     exit 1
