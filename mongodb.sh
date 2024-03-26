@@ -1,3 +1,4 @@
+#!/bin/bash
 Timestamp=$(date +%F)
 Logs="/tmp/$0-$Timestamp.log"
 Id=$(id -u)
