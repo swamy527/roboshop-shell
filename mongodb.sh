@@ -38,7 +38,7 @@ systemctl enable mongod  &>> $Logs
 
 VALIDATE $? "enabling mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0' /etc/mongod.conf &>> $Logs
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $Logs
 
 VALIDATE $? "updating mongod.conf file"
 
