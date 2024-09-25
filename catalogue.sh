@@ -79,7 +79,7 @@ VALIDATE $? "eablling service"
 systemctl start catalogue &>> $Logs
 VALIDATE $? "start service"
 
-cp /home/centos/robosop-shell/mongo.repo /etc/yum.repos.d &>> $Logs
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d &>> $Logs
 
 VALIDATE $? "copying file yum repos"
 
