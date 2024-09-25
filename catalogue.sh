@@ -63,7 +63,7 @@ npm install  &>> $Logs
 
 VALIDATE $? "npm installing"
 
-cp catalogue.service /etc/systemd/system &>> $Logs
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system &>> $Logs
 
 VALIDATE $? "copying file to systemd"
 
