@@ -30,17 +30,33 @@ rm -rf /tmp/log.*
 
 dnf install nginx -y &>> $Logs
 
-systemctl enable nginx
+VALIDATE $? "installing nginx"
 
-rm -rf /usr/share/nginx/html/*
+systemctl enable nginx  &>> $Logs
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+VALIDATE $? "enabling nginx"
+
+rm -rf /usr/share/nginx/html/*  &>> $Logs
+
+VALIDATE $? "deleting files in html"
+
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip  &>> $Logs
+
+VALIDATE $? "downloading web application"
 
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html  &>> $Logs
 
-unzip /tmp/web.zip
+VALIDATE $? "direcotry"
 
-cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d
+unzip /tmp/web.zip  &>> $Logs
 
-systemctl start nginx
+VALIDATE $? "unzipping file"
+
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d  &>> $Logs
+
+VALIDATE $? "copying file to default.d"
+
+systemctl start nginx  &>> $Logs
+
+VALIDATE $? "starting nginx"
