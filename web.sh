@@ -25,3 +25,22 @@ then
 else
    echo -e "\n$G you are root user $N \n"
 fi
+
+rm -rf /tmp/log.*
+
+dnf install nginx -y &>> $Logs
+
+systemctl enable nginx
+
+rm -rf /usr/share/nginx/html/*
+
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+
+
+cd /usr/share/nginx/html
+
+unzip /tmp/web.zip
+
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d
+
+systemctl start nginx
