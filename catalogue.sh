@@ -41,6 +41,8 @@ VALIDATE $? "installing nodejs"
 
 useradd roboshop &>> $Logs
 
+
+
 VALIDATE $? "user add"
 
 mkdir /app &>> $Logs
@@ -77,7 +79,7 @@ VALIDATE $? "eablling service"
 systemctl start catalogue &>> $Logs
 VALIDATE $? "start service"
 
-cp mongo.repo /etc/yum.repos.d &>> $Logs
+cp /home/centos/robosop-shell/mongo.repo /etc/yum.repos.d &>> $Logs
 
 VALIDATE $? "copying file yum repos"
 
