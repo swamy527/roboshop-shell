@@ -26,7 +26,7 @@ else
    echo -e "\n$G you are root user $N \n"
 fi
 
-cp ./mongo.rep /etc/yum.repos.d  &>> $Logs
+cp mongo.repo /etc/yum.repos.d  &>> $Logs
 
 VALIDATE $? "copying file to yum repo"
 
