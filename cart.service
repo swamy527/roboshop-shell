@@ -2,8 +2,8 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST=172.31.91.121
-Environment=CATALOGUE_HOST=172.31.80.24
+Environment=REDIS_HOST=redis.beesh.life
+Environment=CATALOGUE_HOST=catalogue.beesh.life
 Environment=CATALOGUE_PORT=8080
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=cart

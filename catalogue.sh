@@ -9,8 +9,7 @@ Y="\e[33m"
 N="\e[0m"
 
 VALIDATE() {
-    if [ $1 -ne 0 ]
-    then
+    if [ $1 -ne 0 ]; then
         echo -e "\n$R $2 is failed $N \n"
         exit 1
     else
@@ -18,79 +17,76 @@ VALIDATE() {
     fi
 }
 
-if [ $ID -ne 0 ]
-then
-   echo -e "\n$R Run script as root user $N \n"
-   exit 50
+if [ $ID -ne 0 ]; then
+    echo -e "\n$R Run script as root user $N \n"
+    exit 50
 else
-   echo -e "\n$G you are root user $N \n"
+    echo -e "\n$G you are root user $N \n"
 fi
 
 rm -rf /tmp/log.*
-dnf module disable nodejs -y  &>> $Logs
+dnf module disable nodejs -y &>>$Logs
 
 VALIDATE $? "nodejs disable"
 
-dnf module enable nodejs:18 -y &>> $Logs
+dnf module enable nodejs:18 -y &>>$Logs
 
 VALIDATE $? "enable nodejs:18"
 
-dnf install nodejs -y &>> $Logs
+dnf install nodejs -y &>>$Logs
 
 VALIDATE $? "installing nodejs"
 
-useradd roboshop &>> $Logs
-
-
+useradd roboshop &>>$Logs
 
 VALIDATE $? "user add"
 
-mkdir /app &>> $Logs
+mkdir /app &>>$Logs
 
 VALIDATE $? "new directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip  &>> $Logs
- 
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>>$Logs
+
 VALIDATE $? "downloading application"
 
-cd /app  &>> $Logs
+cd /app &>>$Logs
 
 VALIDATE $? "change directory"
 
-unzip /tmp/catalogue.zip &>> $Logs
+unzip /tmp/catalogue.zip &>>$Logs
 
 VALIDATE $? "unzipping application"
 
-npm install  &>> $Logs
+npm install &>>$Logs
 
 VALIDATE $? "npm installing"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system &>> $Logs
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system &>>$Logs
 
 VALIDATE $? "copying file to systemd"
 
-systemctl daemon-reload &>> $Logs
+systemctl daemon-reload &>>$Logs
 
 VALIDATE $? "daemon reload"
 
-systemctl enable catalogue &>> $Logs
+systemctl enable catalogue &>>$Logs
 VALIDATE $? "eablling service"
 
-systemctl start catalogue &>> $Logs
+systemctl start catalogue &>>$Logs
 VALIDATE $? "start service"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d &>> $Logs
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d &>>$Logs
 
 VALIDATE $? "copying file yum repos"
 
-dnf install mongodb-org-shell -y &>> $Logs
+dnf install mongodb-org-shell -y &>>$Logs
 
 VALIDATE $? "install mongo client"
 
-mongo --host 172.31.82.82 </app/schema/catalogue.js &>> $Logs
+mongo --host mongodb.beesh.life </app/schema/catalogue.js &>>$Logs
 
 VALIDATE $? "copy schme products"
 
-systemctl restart catalogue &>> $Logs
+systemctl restart catalogue &>>$Logs
 
 VALIDATE $? "start service"
