@@ -87,7 +87,7 @@ dnf install mongodb-org-shell -y &>> $Logs
 
 VALIDATE $? "install mongo client"
 
-mongo --host 172.31.87.157 </app/schema/catalogue.js &>> $Logs
+mongo --host 172.31.82.82 </app/schema/catalogue.js &>> $Logs
 
 VALIDATE $? "copy schme products"
 
