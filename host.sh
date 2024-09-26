@@ -1,20 +1,12 @@
 #!/bin/bash
 
-ZONE=Z0065515281TOZ02X40CA
+instance=("web", "cart", "user", "redis")
 
-aws route53 change-resource-record-sets --hosted-zone-id $ZONE --change-batch '		
-  {		
-    "Comment": "Testing creating a record set"		
-    ,"Changes": [{		
-     "Action"              : "CREATE"		
-    ,"ResourceRecordSet"  : {		
-        "Name"              : "'web'.'beesh.life'"		
-        ,"Type"             : "A"		
-        ,"TTL"              : 1		
-        ,"ResourceRecords"  : [{		
-            "Value"         : "'18.206.147.57'"		
-        }]		
-      }		
-    }]		
-  }		
-   '
+for i in ${instance[@]}; do
+
+    if [ $i == "web" ] || [ $i == "cart" ] || [ $i == "redis" ]; then
+        echo -e "correctly printed $i"
+    else
+        echo -e "\n printed for $i"
+    fi
+done
