@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ZONE=Z0065515281TOZ02X40CA
-  aws route53 change-resource-record-sets \		
-    --hosted-zone-id $ZONE \		
-    --change-batch '		
+
+aws route53 change-resource-record-sets --hosted-zone-id $ZONE --change-batch '		
   {		
     "Comment": "Testing creating a record set"		
     ,"Changes": [{		
