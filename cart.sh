@@ -42,14 +42,13 @@ VALIDATE $? "installing nodejs"
 useradd roboshop &>> $Logs
 
 
-
 VALIDATE $? "user add"
 
 mkdir /app &>> $Logs
 
 VALIDATE $? "new directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip  &>> $Logs
+curl -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip  &>> $Logs
  
 VALIDATE $? "downloading application"
 
@@ -57,7 +56,7 @@ cd /app  &>> $Logs
 
 VALIDATE $? "change directory"
 
-unzip /tmp/catalogue.zip &>> $Logs
+unzip /tmp/cart.zip &>> $Logs
 
 VALIDATE $? "unzipping application"
 
@@ -65,7 +64,7 @@ npm install  &>> $Logs
 
 VALIDATE $? "npm installing"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system &>> $Logs
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system &>> $Logs
 
 VALIDATE $? "copying file to systemd"
 
@@ -73,24 +72,8 @@ systemctl daemon-reload &>> $Logs
 
 VALIDATE $? "daemon reload"
 
-systemctl enable catalogue &>> $Logs
+systemctl enable cart &>> $Logs
 VALIDATE $? "eablling service"
 
-systemctl start catalogue &>> $Logs
-VALIDATE $? "start service"
-
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d &>> $Logs
-
-VALIDATE $? "copying file yum repos"
-
-dnf install mongodb-org-shell -y &>> $Logs
-
-VALIDATE $? "install mongo client"
-
-mongo --host 172.31.87.157 </app/schema/catalogue.js &>> $Logs
-
-VALIDATE $? "copy schme products"
-
-systemctl restart catalogue &>> $Logs
-
+systemctl start cart &>> $Logs
 VALIDATE $? "start service"
