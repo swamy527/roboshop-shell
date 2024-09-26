@@ -9,7 +9,7 @@ Y="\e[33m"
 N="\e[0m"
 domain="beesh.life"
 Host_zone=Z0065515281TOZ02X40CA
-instance=("web", "catalogue", "mongodb", "shipping", "user", "cart", "redis", "mysql")
+instance=("web" "catalogue" "mongodb" "shipping" "user" "cart" "redis" "mysql")
 
 if [ $ID -ne 0 ]; then
     echo -e "\n$R Run script as root user $N \n"
