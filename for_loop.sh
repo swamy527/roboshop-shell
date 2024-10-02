@@ -1,6 +1,6 @@
 #!/bin/bash
 
-instance=("web" "catalogue" "mongodb" "shipping" "user" "cart" "redis" "mysql" "payment" "rabbitmq")
+instance=("mongodb" "redis" "rabbitmq" "mysql" "user" "cart" "catalogue" "shipping" "payment" "web")
 
 for i in "${instance[@]}"
 do
