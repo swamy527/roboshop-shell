@@ -12,4 +12,3 @@ for i in "${instance[@]}"
 do
 ansible-playbook -e component="$i" main.yaml
 done
-
