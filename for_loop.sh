@@ -2,6 +2,10 @@
 
 instance=("mongodb" "redis" "rabbitmq" "mysql" "user" "cart" "catalogue" "shipping" "payment" "web")
 
+echo -e "\n installing ansible "
+
+yum install ansible -y
+
 cd /tmp
 
 git clone https://github.com/swamy527/roboshop-ansible-roles.git
