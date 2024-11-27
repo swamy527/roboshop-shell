@@ -37,11 +37,17 @@ dnf install nodejs -y &>>$Logs
 
 VALIDATE $? "installing nodejs"
 
-useradd roboshop &>>$Logs
+id roboshop &>>$Logs
+if [ $? -ne 0 ]
+then
+   useradd roboshop &>>$Logs
+else
+  echo "user already exists"
+fi
 
 VALIDATE $? "user add"
 
-mkdir /app &>>$Logs
+mkdir -p /app &>>$Logs
 
 VALIDATE $? "new directory"
 
