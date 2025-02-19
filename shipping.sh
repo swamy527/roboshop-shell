@@ -68,7 +68,11 @@ VALIDATE $? "starting shipping"
 dnf install mysql -y &>>$Logs
 VALIDATE $? "install mysql"
 
-mysql -h mysql.beesh.life -uroot -pRoboShop@1 </app/schema/shipping.sql &>>$Logs
+for i in schema.sql app-user.sql master-data.sql
+do
+  mysql -h mysql.beesh.life -uroot -pRoboShop@1 </app/db/$i &>>$Logs
+done
+
 VALIDATE $? "loadin schema"
 
 systemctl restart shipping &>>$Logs
