@@ -24,19 +24,11 @@ else
     echo -e "\n$G you are root user $N \n"
 fi
 
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$Logs
-
-VALIDATE $? "installing rpm package"
-
-dnf module enable redis:remi-6.2 -y &>>$Logs
-
-VALIDATE $? "enablin redis"
-
 dnf install redis -y &>>$Logs
 
 VALIDATE $? "installing redis"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>>$Logs
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>>$Logs
 VALIDATE $? "replacing redis string"
 
 systemctl enable redis &>>$Logs
